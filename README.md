@@ -1,5 +1,5 @@
 
-<a href="https://gces.edu.np/" align="center"><img src="logo.png"></a>
+<a href="https://gces.edu.np/"><img src="logo.png" align="center"></a>
 
 
 # AI Powered Learning Assistant / AI Learning App
