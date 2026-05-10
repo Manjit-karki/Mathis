@@ -1,5 +1,5 @@
 
-<a href="https://gces.edu.np/"><img src="logo.png" align="centre"></a>
+<div align="center"><a href="https://gces.edu.np/"><img src="logo.png"></a></div>
 
 
 # AI Powered Learning Assistant / AI Learning App
@@ -11,9 +11,8 @@ This project aims to solve these issues by integrating AI-powered assistance int
 
 ---
 
-### Main Features
+## Main Features
 
----
 
 - AI-powered question answering
 - Personalized learning assistance
@@ -23,17 +22,15 @@ This project aims to solve these issues by integrating AI-powered assistance int
 
 ---
 
-### Purpose
+## Purpose
 
----
 
 The main objective of this project is to enhance learning accessibility and improve the overall educational experience through AI-driven technologies.
 
 ---
 
-### Technologies Used
+## Technologies Used
 
----
 
 - Frontend: React / HTML / CSS
 - Backend: Node.js / Express / Spring
