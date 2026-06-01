@@ -2,10 +2,10 @@
 <div align="center"><a href="https://gces.edu.np/"><img src="logo.png"></a></div>
 
 
-# AI Powered Learning Assistant / AI Learning App
+<div align="center"><h1> Mathis I </h1></div> 
 
 
-AI powered Learning assistant app or AI Learning app is an educational platform designed to help students learn more efficiently using artificial intelligence. Traditional learning methods often lack personalized guidance, instant feedback, and adaptive support, making self-learning difficult for many students.
+Mathis "I" is an educational platform designed to help students learn more efficiently using artificial intelligence. Traditional learning methods often lack personalized guidance, instant feedback, and adaptive support, making self-learning difficult for many students.
 
 This project aims to solve these issues by integrating AI-powered assistance into the learning process. The application provides intelligent responses, learning support, concept explanations, and interactive study features to improve understanding and engagement.
 
@@ -25,6 +25,9 @@ This project aims to solve these issues by integrating AI-powered assistance int
 
 The main objective of this project is to enhance learning accessibility and improve the overall educational experience through AI-driven technologies.
 
+
+
+NOTE: While the application talks highly about using AI/LLMs to help in the learning process, the project heavily depends on filtering of readily available study material to choose topics and facilitate answers to queries which are made more comprehensive through AI-chatbots for language processing only.
 
 ---
 
