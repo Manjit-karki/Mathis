@@ -29,7 +29,7 @@ public class Quiz {
     @Builder.Default
     private List<questions> question=new ArrayList<>();
     @Builder.Default
-    private List<questions> userAnswers = new ArrayList<>();
+    private List<answer> answers = new ArrayList<>();
     @Builder.Default
     private Integer score = 0;
 

@@ -11,7 +11,9 @@ public class questions {
     @NotBlank
     private String question;
     @NotBlank
-    private String answer;
+    private String correctAnswer;
     @Builder.Default
     private String explanation="";
+    @Builder.Default
+    private Difficulty difficulty = Difficulty.MEDIUM;
 }
