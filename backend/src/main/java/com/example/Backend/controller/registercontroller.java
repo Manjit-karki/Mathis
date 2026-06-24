@@ -29,7 +29,7 @@ public class registercontroller {
 @PostMapping("/login")
     public ResponseEntity<?> loginUser(@RequestBody LoginRequest loginRequest) {
         // TO Find the user via email
-        Optional<SUser> userOptional = userRepo.findByEmail(loginRequest.getEmail());
+        Optional<SUser> userOptional = userRepo.findByUsername(loginRequest.getUsername());
 
         if (userOptional.isPresent()) {
             SUser user = userOptional.get();
@@ -40,7 +40,7 @@ public class registercontroller {
         }
         
         // Error Handler
-        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"error\": \"Invalid email or password\"}");
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("{\"error\": \"Invalid username or password\"}");
     }
     @GetMapping("/home")
     public String yes(){return "registered";}

@@ -9,18 +9,18 @@ const Login = () => {
 
   // Connection with back-end
   const handleLoginSubmit = async (e) => {
-    e.preventDefault(); // To deug and avoid refreshing
+    e.preventDefault(); // To debug and avoid refreshing
     setErrorMessage(""); 
 
     try {
-      // Sending request controller
+      // Sending request to controller
       const response = await fetch("http://localhost:8080/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({ 
-          email: email, 
+          username: email, 
           password: password 
         }), 
       });
@@ -32,7 +32,8 @@ const Login = () => {
         // Routing to dashboard/homepage upon success
         window.location.href = "/home"; 
       } else {
-        setErrorMessage("Invalid email or password.");
+        const errorData = await response.json();
+        setErrorMessage(errorData.error || "Invalid username or password.");
       }
     } catch (error) {
       console.error("Network error:", error);
@@ -50,8 +51,8 @@ const Login = () => {
 
         <form className="login-form" onSubmit={handleLoginSubmit}>
           <input
-            type="email"
-            placeholder="Email Address"
+            type="text" // Changed from "email" to "text" for username flexibility
+            placeholder="Username"
             className="login-input"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
