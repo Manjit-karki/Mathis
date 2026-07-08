@@ -1,6 +1,6 @@
 package com.example.Backend.services;
 
-import com.example.Backend.model.answer;
+import com.example.Backend.model.Answer;
 import com.example.Backend.model.Quiz;
 import com.example.Backend.model.Questions;
 import com.example.Backend.repository.QuizRepository;
@@ -28,7 +28,7 @@ public class QuizService
                 .userId(userId)
                 .documentId(documentId)
                 .title(title)
-                .question(question)
+                .Questions(qestion)
                 .totalQuestions(question.size())
                 .build();
         return quizRepository.save(quiz);
@@ -46,7 +46,7 @@ public class QuizService
         return quizRepository.findByUserIdAndDocumentId(userId, documentId);
     }
     //submitting
-    public void submitAnswer(String quizId,answer answer) {
+    public void submitAnswer(String quizId, Answer answer) {
         Query query = new Query(Criteria.where("id").is(quizId));
         Update update = new Update().push("userAnswers", answer);
 

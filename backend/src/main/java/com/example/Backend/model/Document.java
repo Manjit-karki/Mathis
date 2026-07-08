@@ -6,15 +6,17 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 
-@Document(collection="documents")
+@org.springframework.data.mongodb.core.mapping.Document(collection = "documents")
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class document {
+public class Document {
+    @id
     private String id;
+    private String userID;
     private String documentId;
+    private String fileName;
 }

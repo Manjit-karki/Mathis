@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import lombok.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -24,7 +25,8 @@ public class Flashcard {
     private String userId;      // Store as String
     private String documentId;
 
-    private List<Card> cards;
+    @Builder.Default
+    private List<Card> cards=new ArrayList<>();
 
     @CreatedDate
     private LocalDateTime createdAt;

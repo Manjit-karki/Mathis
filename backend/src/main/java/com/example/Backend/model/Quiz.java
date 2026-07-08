@@ -6,6 +6,7 @@ import lombok.*;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.mongodb.core.index.CompoundIndexes;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
@@ -27,9 +28,9 @@ public class Quiz {
     @NotBlank
     private String title;
     @Builder.Default
-    private List<Questions> question=new ArrayList<>();
+    private List<Questions> questions=new ArrayList<>();
     @Builder.Default
-    private List<answer> answers = new ArrayList<>();
+    private List<Answer> userAnswers = new ArrayList<>();
     @Builder.Default
     private Integer score = 0;
 

@@ -46,9 +46,8 @@ public class ChatHistory {
 
         @Builder.Default
         private List<Integer> relevantChunks = new ArrayList<>();
-    }
-
-    public enum Role {
-        USER, AI
+        public enum Role {
+            USER, AI
+        }
     }
 }
