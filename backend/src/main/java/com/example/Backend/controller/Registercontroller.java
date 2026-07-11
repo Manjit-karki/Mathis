@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
-public class registercontroller {
+public class Registercontroller {
     @Autowired
     private  userRepository userRepo;
     @Autowired

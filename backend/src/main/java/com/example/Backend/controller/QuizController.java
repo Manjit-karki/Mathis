@@ -1,4 +1,4 @@
 package com.example.Backend.controller;
 
-public class progressController {
+public class QuizController {
 }

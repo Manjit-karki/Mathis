@@ -20,42 +20,42 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/flashcards")
 @RequiredArgsConstructor
-public class flashcardController {
+public class FlashcardController {
 
     private final FlashcardService flashcardService;
     private final MongoTemplate mongoTemplate;
 
 
     @GetMapping
-    public ResponseEntity<apiResponse<List<Flashcard>>> getAllSets(
+    public ResponseEntity<ApiResponse<List<Flashcard>>> getAllSets(
             @AuthenticationPrincipal UserDetails user) {
         try {
             List<Flashcard> sets = flashcardService.getAllByUser(userId(user));
-            return ResponseEntity.ok(apiResponse.ok(sets, "Flashcard sets fetched successfully"));
+            return ResponseEntity.ok(ApiResponse.ok(sets, "Flashcard sets fetched successfully"));
         } catch (Exception e) {
             log.error("getAllSets: {}", e.getMessage());
-            return ResponseEntity.status(500).body(apiResponse.error(500, e.getMessage()));
+            return ResponseEntity.status(500).body(ApiResponse.error(500, e.getMessage()));
         }
     }
 
 
     @GetMapping("/document/{documentId}")
-    public ResponseEntity<apiResponse<Flashcard>> getByDocument(
+    public ResponseEntity<ApiResponse<Flashcard>> getByDocument(
             @PathVariable String documentId,
             @AuthenticationPrincipal UserDetails user) {
         try {
             Flashcard set = flashcardService.getByUserAndDocument(userId(user), documentId);
-            return ResponseEntity.ok(apiResponse.ok(set, "Flashcard set fetched successfully"));
+            return ResponseEntity.ok(ApiResponse.ok(set, "Flashcard set fetched successfully"));
         } catch (RuntimeException e) {
             if (notFound(e)) return notFound404("Flashcard set not found");
             log.error("getByDocument: {}", e.getMessage());
-            return ResponseEntity.status(500).body(apiResponse.error(500, e.getMessage()));
+            return ResponseEntity.status(500).body(ApiResponse.error(500, e.getMessage()));
         }
     }
 
 
     @PostMapping("/document/{documentId}/cards/{cardIndex}/review")
-    public ResponseEntity<apiResponse<Flashcard>> reviewCard(
+    public ResponseEntity<ApiResponse<Flashcard>> reviewCard(
             @PathVariable String documentId,
             @PathVariable int cardIndex,
             @AuthenticationPrincipal UserDetails user) {
@@ -74,17 +74,17 @@ public class flashcardController {
             mongoTemplate.updateFirst(query, update, Flashcard.class);
 
             Flashcard updated = flashcardService.getByUserAndDocument(uid, documentId);
-            return ResponseEntity.ok(apiResponse.ok(updated, "Card reviewed successfully"));
+            return ResponseEntity.ok(ApiResponse.ok(updated, "Card reviewed successfully"));
         } catch (RuntimeException e) {
             if (notFound(e)) return notFound404("Flashcard set not found");
             log.error("reviewCard: {}", e.getMessage());
-            return ResponseEntity.status(500).body(apiResponse.error(500, e.getMessage()));
+            return ResponseEntity.status(500).body(ApiResponse.error(500, e.getMessage()));
         }
     }
 
 
     @PutMapping("/document/{documentId}/cards/{cardIndex}/star")
-    public ResponseEntity<apiResponse<Flashcard>> toggleStar(
+    public ResponseEntity<ApiResponse<Flashcard>> toggleStar(
             @PathVariable String documentId,
             @PathVariable int cardIndex,
             @AuthenticationPrincipal UserDetails user) {
@@ -101,16 +101,16 @@ public class flashcardController {
 
             Flashcard updated = flashcardService.getByUserAndDocument(uid, documentId);
             String msg = newStarred ? "Card starred successfully" : "Card unstarred successfully";
-            return ResponseEntity.ok(apiResponse.ok(updated, msg));
+            return ResponseEntity.ok(ApiResponse.ok(updated, msg));
         } catch (RuntimeException e) {
             if (notFound(e)) return notFound404("Flashcard set not found");
             log.error("toggleStar: {}", e.getMessage());
-            return ResponseEntity.status(500).body(apiResponse.error(500, e.getMessage()));
+            return ResponseEntity.status(500).body(ApiResponse.error(500, e.getMessage()));
         }
     }
 
     @DeleteMapping("/document/{documentId}")
-    public ResponseEntity<apiResponse<Void>> deleteSet(
+    public ResponseEntity<ApiResponse<Void>> deleteSet(
             @PathVariable String documentId,
             @AuthenticationPrincipal UserDetails user) {
         try {
@@ -118,11 +118,11 @@ public class flashcardController {
             // Verify it exists first (so we return 404 instead of silently doing nothing)
             flashcardService.getByUserAndDocument(uid, documentId);
             flashcardService.delete(uid, documentId);
-            return ResponseEntity.ok(apiResponse.ok(null, "Flashcard set deleted successfully"));
+            return ResponseEntity.ok(ApiResponse.ok(null, "Flashcard set deleted successfully"));
         } catch (RuntimeException e) {
             if (notFound(e)) return notFound404("Flashcard set not found");
             log.error("deleteSet: {}", e.getMessage());
-            return ResponseEntity.status(500).body(apiResponse.error(500, e.getMessage()));
+            return ResponseEntity.status(500).body(ApiResponse.error(500, e.getMessage()));
         }
     }
 
@@ -132,11 +132,11 @@ public class flashcardController {
         return e.getMessage() != null && e.getMessage().contains("not found");
     }
 
-    private <T> ResponseEntity<apiResponse<T>> notFound404(String msg) {
-        return ResponseEntity.status(404).body(apiResponse.error(404, msg));
+    private <T> ResponseEntity<ApiResponse<T>> notFound404(String msg) {
+        return ResponseEntity.status(404).body(ApiResponse.error(404, msg));
     }
 
-    private <T> ResponseEntity<apiResponse<T>> bad400(String msg) {
-        return ResponseEntity.status(400).body(apiResponse.error(400, msg));
+    private <T> ResponseEntity<ApiResponse<T>> bad400(String msg) {
+        return ResponseEntity.status(400).body(ApiResponse.error(400, msg));
     }
 }
