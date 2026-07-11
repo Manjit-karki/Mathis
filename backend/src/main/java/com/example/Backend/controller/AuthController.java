@@ -21,7 +21,7 @@ public class AuthController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @PostMapping
+    @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody SUser user) {
         if(userRepo.findByUsername(user.getUsername()).isPresent()){
             return ResponseEntity.badRequest().body("User already exists");
