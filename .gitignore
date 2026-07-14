@@ -24,5 +24,4 @@ dist-ssr
 *.sln
 *.sw?
 
-
-./backend/src/main/resources/application.properties
+application.properties
