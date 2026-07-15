@@ -27,9 +27,9 @@ public class Quiz {
     @NotBlank
     private String title;
     @Builder.Default
-    private List<Questions> questions=new ArrayList<>();
+    private List<questions> questions=new ArrayList<>();
     @Builder.Default
-    private List<Answer> userAnswers = new ArrayList<>();
+    private List<answer> userAnswers = new ArrayList<>();
     @Builder.Default
     private Integer score = 0;
 
@@ -46,3 +46,4 @@ public class Quiz {
     private LocalDateTime updatedAt;
 
 }
+

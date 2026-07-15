@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class Answer {
+public class answer {
     @NotNull
     private Integer questionIndex;
     @NotNull

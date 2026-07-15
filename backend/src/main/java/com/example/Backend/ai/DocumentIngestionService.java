@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class DocumentIngestionService implements CommandLineRunner {
     private static final Logger log = LoggerFactory.getLogger(DocumentIngestionService.class);
+    private static final String Document_id = "Chemistry-XII-2077";
     @Value("classpath:/documents/Chemistry-XII-2077-full-book.pdf")
     private Resource resource;
     private final VectorStore vectorStore;
