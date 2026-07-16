@@ -12,26 +12,23 @@ import org.springframework.stereotype.Service;
 
 import java.util.Collections;
 
+    @Service
+    @RequiredArgsConstructor
+    public class UserService implements UserDetailsService {
 
-@Service
-@RequiredArgsConstructor
-public class UserService implements UserDetailsService {
+        private final userRepository userRepo;
 
-    private final userRepository userRepo;
-
-    @Override
-    @NullMarked
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        SUser user=userRepo.findByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException(username));
+        @Override
+        public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+            SUser user = userRepo.findByEmail(email)
+                    .orElseThrow(() -> new UsernameNotFoundException("No user found with email: " + email));
 
             return User.builder()
-                    .username(user.getUsername())
+                    .username(user.getEmail())
                     .password(user.getPassword())
                     .authorities(Collections.emptyList())
                     .build();
-
+        }
     }
-}
 
 
