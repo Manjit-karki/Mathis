@@ -25,7 +25,7 @@ public class AuthController {
     private final JwtUtil jwtUtil;
     @PostMapping("/register")
     public ResponseEntity<?> registerUser(@RequestBody SUser user) {
-        if(userRepo.findByUsername(user.getUsername()).isPresent()){
+        if(userRepo.findByEmail(user.getEmail()).isPresent()){
             return ResponseEntity.badRequest().body("User already exists");
         }
         String hashedPassword=passwordEncoder.encode(user.getPassword());
@@ -46,5 +46,8 @@ public class AuthController {
         return ResponseEntity.ok(Map.of("token", token)) ;
     }
 
-
+    @GetMapping("/hello")
+    public String Hello() {
+        return "Hello World";
+    }
 }
