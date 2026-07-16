@@ -1,4 +1,13 @@
+export const Base_URL = 'http://localhost:5173/';
+
 export const API_PATHS = {
+  AUTH: {
+    LOGIN: "/auth/login",
+    REGISTER: "/auth/register",
+    GET_PROFILE: "/auth/profile",
+    UPDATE_PROFILE: "/auth/profile",
+    CHANGE_PASSWORD: "/auth/change-password",
+  },
   
   AI: {
     GENERATE_FLASHCARDS: '/api/ai/',

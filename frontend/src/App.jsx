@@ -15,7 +15,7 @@ import { useAuth } from './context/AuthContext.jsx';
 
 
 const App = () => {
-  const {isAuthenticated, loading} = useAuth()
+  const {isAuthenticated, loading} = useAuth();
 
   if (loading) {
     return (
